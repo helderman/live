@@ -12,6 +12,10 @@ Refreshing your web browser may not always get you the latest version.
 If necessary, append a 'cache buster' to the URL,
 i.e. a varying suffix like `?v=1234`.
 
-## Bob Ross intro
+## Intro
 
-[Season 18 episode 3](https://www.youtube.com/watch?v=EBZKuVbRY54)
+[Bob Ross - Mountain Seclusion (Season 18 Episode 3)](https://www.youtube.com/watch?v=EBZKuVbRY54)
+
+## Further reading
+
+[MDN Game Development](https://developer.mozilla.org/en-US/docs/Games)
