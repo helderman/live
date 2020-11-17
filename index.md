@@ -1,5 +1,7 @@
 ## Live coding session "The Joy of Programming" - November 18, 2020
 
+__Warning:__ loud noises!
+
 [Click here](2020-11-18/yars.html)
 to play the game live!
 
@@ -10,6 +12,6 @@ Refreshing your web browser may not always get you the latest version.
 If necessary, append a 'cache buster' to the URL,
 i.e. a varying suffix like `?v=1234`.
 
-### Bob Ross intro
+## Bob Ross intro
 
 [Season 18 episode 3](https://www.youtube.com/watch?v=EBZKuVbRY54)
