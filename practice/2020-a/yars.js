@@ -5,6 +5,12 @@ ctx.font = 'bold 32px sans';
 ctx.fillStyle = 'yellow';
 ctx.textAlign = 'right';
 
+ctx.strokeStyle = 'white';
+ctx.lineCap = 'round';
+ctx.lineWidth = 10;
+
+var cos = Math.cos(1);
+var sin = Math.sin(1);
 
 var framecount = 0;
 var zeroes = '00000000';
@@ -29,6 +35,23 @@ var sprite = {
 		if (this.hit) {
 			this.dead = framecount + this.xsize;
 			score += this.xscore;
+		}
+		var a = this.dead - framecount;
+		if (a > 0) {
+			var x = 10 * (this.xsize - a), y = 0;
+			var rnd = this.dead / 10;
+			ctx.globalAlpha = 3 * a / this.xsize;
+			ctx.beginPath();
+			for (var i = 3 * this.xsize; i--;) {
+				rnd = rnd * 1.3 % 1 + 0.1;
+				ctx.moveTo(this.x + x * rnd, this.y + y * rnd);
+				ctx.lineTo(this.x + x * rnd * 0.9, this.y + y * rnd * 0.9);
+				a = x * cos - y * sin;
+				y = x * sin + y * cos;
+				x = a;
+			}
+			ctx.stroke();
+			ctx.globalAlpha = 1;
 		}
 	},
 	dead: 0,
