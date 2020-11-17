@@ -104,13 +104,13 @@ Bullet.prototype = sprite;
 var lag = 0;
 
 function Invader(num) {
-	this.lag = lag += 25;
-	//this.dead = -1;
+	this.lag = lag += 5;
+	this.dead = -1;
 	this.xscore = 5;
 	this.img = document.getElementById('inv' + num);
 	this.move = function() {
-		if (t < -1.9 || t > 1.9) this.dead = 0;
 		var t = 2 * Math.sin((framecount - this.lag) / 300);
+		if (t < -1.9 || t > 1.9) this.dead = 0;
 		if (this.dead) return;
 		switch (num) {
 			case 1:
@@ -143,6 +143,42 @@ function main() {
 		new Bullet(), new Bullet(), new Bullet(), new Bullet(),
 	]);
 	var bad = family([
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
 		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
 		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
 		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
