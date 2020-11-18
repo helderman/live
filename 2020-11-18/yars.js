@@ -17,6 +17,16 @@ var zeroes = '00000000';
 var score = 0, scount = 0;
 var mx = 320, my = 500;
 
+function audio(id) {
+	var a = document.getElementById(id);
+	return function() {
+		if (a.paused) a.play(); else a.currentTime = 0;
+	};
+}
+
+var pew = audio('pew');
+var bang = audio('bang');
+
 function family(a) {
 	return function(fn) {
 		for (var i = a.length; i--;) a[i][fn]();
@@ -34,6 +44,7 @@ var sprite = {
 		if (this.hit) {
 			this.dead = framecount + this.xsize;
 			score += this.xscore;
+			if (this.xsize > 10) bang();
 		}
 		var a = this.dead - framecount;
 		if (a > 0) {
@@ -83,6 +94,7 @@ function Bullet() {
 			this.dead = 0;
 			this.x = ship.x;
 			this.y = ship.y - 50;
+			pew();
 		}
 	};
 }
