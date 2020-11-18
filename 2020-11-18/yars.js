@@ -17,14 +17,27 @@ function family(a) {
 }
 
 var sprite = {
+	collide: function() {
+		this.hit = !this.dead && this.img.collide(this.x, this.y);
+	},
 	draw: function() {
-		this.img.draw(this.x, this.y);
-	}
+		!this.dead && this.img.draw(this.x, this.y);
+	},
+	explode: function() {
+		if (this.hit) {
+			this.dead = framecount + this.xsize;
+			score += this.xscore;
+		}
+	},
+	dead: 0,
+	xsize: 15,
+	xscore: 0
 };
 
 function Ship() {
 	this.img = document.getElementById('ship');
 	this.move = function() {
+		if (this.dead) return;
 		this.x = mx;
 		this.y = my;
 	};
@@ -37,10 +50,11 @@ function Bullet() {
 	this.y = -999;
 	this.img = document.getElementById('bullet');
 	this.move = function() {
-		if (this.y > -99) {
+		if (!this.dead && this.y > -99) {
 			this.y -= 20;
 		}
-		else if (!--fired) {
+		else if (framecount > this.dead && !--fired) {
+			this.dead = 0;
 			this.x = ship.x;
 			this.y = ship.y - 50;
 		}
@@ -52,9 +66,13 @@ var lag = 0;
 
 function Invader(num) {
 	this.lag = lag += 25;
+	//this.dead = -1;
+	this.xscore = 5;
 	this.img = document.getElementById('inv' + num);
 	this.move = function() {
 		var t = 2 * Math.sin((framecount - this.lag) / 300);
+		if (t < -1.9 || t > 1.9) this.dead = 0;
+		if (this.dead) return;
 		this.moveTo(t, 0);
 	};
 	this.moveTo = function(x, y) {
@@ -76,7 +94,7 @@ function main() {
 		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
 	]);
 	canvas.onclick = function() {
-		fired = 1;
+		fired = !ship.dead;
 	};
 	canvas.onmousemove = function(e) {
 		mx = e.pageX - canvas.offsetLeft;
@@ -88,7 +106,15 @@ function main() {
 		bad('move');
 		good('move');
 		bad('draw');
+		good('collide');
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		good('draw');
+		bad('collide');
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		bad('draw');
+		good('draw');
+		bad('explode');
+		good('explode');
 		scount += scount < score;
 		ctx.fillText(zeroes + scount, ctx.measureText(zeroes).width, 40);
 		++framecount;
@@ -101,6 +127,16 @@ for (var i = imgs.length; i--;) {
 	imgs[i].onload = function() {
 		var w = this.width;
 		var h = this.height;
+		ctx.drawImage(this, 0, 0);
+		var shape = ctx.getImageData(0, 0, w, h).data;
+		ctx.clearRect(0, 0, w, h);
+		this.collide = function(x, y) {
+			var a = ctx.getImageData(x - w/2 | 0, y - h/2 | 0, w, h).data;
+			for (var i = 3; i < a.length; i += 4) {
+				if (a[i] + shape[i] > 500) return true;
+			}
+			return false;
+		};
 		this.draw = function(x, y) {
 			ctx.drawImage(this, x - w/2 | 0, y - h/2 | 0);
 		};
