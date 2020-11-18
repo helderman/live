@@ -1,5 +1,11 @@
 #canvas {
-	background: black;
+	background: url(stars.jpg) repeat-y;
+	animation: scrolling 40s linear infinite;
+}
+
+@keyframes scrolling {
+	from { background-position-y: 0; }
+	to { background-position-y: 640px; }
 }
 
 img {
