@@ -103,17 +103,29 @@ Bullet.prototype = sprite;
 var lag = 0;
 
 function Invader(num) {
-	this.lag = lag += 25;
-	//this.dead = -1;
+	this.lag = lag += 5;
+	this.dead = -1;
 	this.xscore = 5;
 	this.img = document.getElementById('inv' + num);
 	this.move = function() {
 		var t = 2 * Math.sin((framecount - this.lag) / 300);
 		if (t < -1.9 || t > 1.9) this.dead = 0;
 		if (this.dead) return;
-		this.moveTo(t, 0);
+		switch (num) {
+			case 1:
+				this.moveTo(t, 2*t*t);
+				break;
+			case 2:
+				this.moveTo(t*(t-1)*(t+1), 0.5*t*t-0.2);
+				break;
+			case 3:
+				this.moveTo(t*(t-1)*(t+1), 2*(t-1)*(t-0.5)*(t+0.5)*(t+1));
+				break;
+		}
 	};
 	this.moveTo = function(x, y) {
+		x += 0.1 * Math.sin((framecount - this.lag) / 17);
+		y += 0.1 * Math.sin((framecount - this.lag) / 27);
 		this.x = canvas.width * (0.5 - x);
 		this.y = canvas.height * (0.5 - y);
 	};
@@ -128,7 +140,52 @@ function main() {
 	]);
 	var bad = family([
 		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
 		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(1), new Invader(1), new Invader(1), new Invader(1),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(2), new Invader(2), new Invader(2), new Invader(2),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
+		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
 		new Invader(3), new Invader(3), new Invader(3), new Invader(3),
 	]);
 	canvas.onclick = function() {
