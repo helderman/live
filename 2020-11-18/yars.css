@@ -1,3 +1,7 @@
 #canvas {
 	background: black;
 }
+
+img {
+	display: none;
+}
