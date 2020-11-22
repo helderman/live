@@ -1,7 +1,9 @@
 # Presenter tooling
 
 I have been using a Windows 10 desktop (Linux would be fine too)
-with the following tooling pre-installed.
+with the following tooling.
+
+## Install
 
 - A modern web browser like
   [Chrome](https://en.wikipedia.org/wiki/Google_Chrome) or
@@ -24,8 +26,13 @@ with the following tooling pre-installed.
   - Some GIMP shortcut keys were captured
     (e.g. Ctrl-M became 'mute' instead of 'merge layer down').
 
-Next, configure the tools.
+## Configure
 
+- Clone [the repo](https://github.com/helderman/live).
+  Create a new subdirectory as your working folder.
+  You may want to configure your repo
+  to authenticate with GitHub without asking for credentials every time.
+- In your web server, make a web application for the new working folder.
 - Customize <i>vim</i>
   by putting this [.vimrc](.vimrc) in the home directory.
 - Make sure you can call <i>sox</i> from Git Bash;
@@ -33,14 +40,13 @@ Next, configure the tools.
   ```
   PATH="$PATH:/c/Program Files (x86)/sox-14-4-1"
   ```
-- In your web server, make a web application for your working folder.
 - In GIMP, make 'transparency' the default fill for every new image
   (Edit - Preferences - Default Image - Fill with).
   Also bookmark your working folder
   (there's a `+` button for that in every file dialog in GIMP),
   for quick access when saving an image.
 
-To prepare yourself right before the presentation:
+## Right before the presentation
 
 - Shut down instant messengers, email clients
   and other potential disturbance factors
